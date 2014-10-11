@@ -30,13 +30,26 @@ function imdb_request( title ) {
 			});
 
 			if ( !match ) {
-				// Attempt one more try with an empty year
-				if ( !imdb_tries ) {
-					imdb_tries++;
-					set_imdb_year(false);
-					imdb_request( title );
+				if ( imdb_tries < 2 ) {
 
-					return false;
+					// if multi-word
+					var title_words = _.initial(_.compact(title.split(' ')));
+					if (title_words.length > 0) {
+						console.debug("s=" + imdb_params.s + ", title=" + title + ", neq=" + (imdb_params.s != title));
+						if (imdb_params.s != title) {
+							//already queried shortened
+							set_imdb_year(false);
+						}
+						set_imdb_title(title_words.join(' '));
+					} else {
+						// Attempt one more try with an empty year
+						set_imdb_year(false);
+						imdb_tries++;
+					}
+					imdb_request(title);
+					imdb_tries++;
+
+					return false;				
 				} else {
 					rating = 'Error. ' + get_imdb_search_link();
 				}
@@ -80,6 +93,7 @@ function set_imdb_year( year ) {
 	if ( year ) {
 		imdb_params.y = year;
 	} else {
+		imdb_params = _.omit(imdb_params, 'y');
 	}
 }
 
