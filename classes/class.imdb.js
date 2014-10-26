@@ -51,7 +51,8 @@ function imdb_request( title ) {
 
 					return false;				
 				} else {
-					rating = 'Error. ' + get_imdb_search_link();
+					rating = 'no match - ' + get_imdb_search_link();
+					set_rating(rating, 'imdb' );
 				}
 			} else {
 
@@ -86,7 +87,7 @@ function imdb_request( title ) {
 }
 
 function get_imdb_search_link() {
-	return '<a target="_TOP" href="http://www.imdb.com/find?q=' + imdb_params.q + '">Search manually</a>';
+	return '<a target="_TOP" href="http://www.imdb.com/find?q=' + imdb_params.s + '">search manually</a>';
 }
 
 function set_imdb_year( year ) {
