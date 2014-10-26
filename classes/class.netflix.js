@@ -1,7 +1,7 @@
 var ratings = JSON.parse( localStorage.getItem('netflix_ratings') );
 
 function append_row( title, id ) {
-	jQuery('div.info dl').append('<dt>' + title + '</dt><dd id="' + id + '_rating"></dd>')
+	jQuery('div.info dl, div.bob-info div.persons dl').append('<dt>' + title + '</dt><dd id="' + id + '_rating"></dd>')
 }
 
 function set_rating(rating, id) {
@@ -9,7 +9,7 @@ function set_rating(rating, id) {
 }
 
 function get_year() {
-	var year = jQuery('.bobMovieHeader > span.year').text();
+	var year = jQuery('.bobMovieHeader > span.year, .bob-header > span.year').text();
 	if ( year.length != 4 ) {
 		year = year.substring( 0, 4 );
 	}
@@ -22,11 +22,11 @@ function get_type() {
 }
 
 function get_duration() {
-	return jQuery('.duration').text();
+	return jQuery('.duration, .runtime').text();
 }
 
 function get_title() {
-	var title = jQuery('.bobMovieHeader span.title').text();
+	var title = jQuery('.bobMovieHeader span.title, .bob-header > a > span.title').text();
 	title = title.replace('(U.K.)', '');
 	title = title.replace('(U.S.)', '');
 
