@@ -51,7 +51,7 @@ function imdb_request( title ) {
 					if (first_match != null) {
 						var title_received_words = _.initial(_.compact(first_match.Title.split(' ')));
 
-						if (title_received_words.length == (title_words.length + 1) && (title_received_words[0].toLowerCase() == "the" || title_received_words[0].toLowerCase() == "a")) {
+						if (title_received_words.length == (title_words.length + 1) && (title_received_words[0].toLowerCase() == "the" || title_received_words[0].toLowerCase() == "a" || title_received_words[0].toLowerCase() == "an")) {
 							if (title_received_words.slice(1).join(' ') == title_received_words.slice(1).join(' ')) {
 								query_rating(first_match, imdb_tries, query, title);
 								imdb_tries = 0;								
