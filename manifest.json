@@ -1,7 +1,7 @@
 {
     "name": "FlixiMDb",
     "description": "Show IMDb ratings for Netflix TV shows and movies. Simply hover over a title to see the rating.",
-    "version": "8.1.1",
+    "version": "8.1.3",
     "content_scripts": [{
 
         "js": [
